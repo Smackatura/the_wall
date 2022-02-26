@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -8,19 +9,21 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
+
 <body>
     <h1>Welcome to The Wall {{user.first_name}} {{user.last_name}}!</h1>
     <h2>Wall Posts</h2>
     {% for post in posts  %}
-        <p><a href="/users/{{post.poster.id}}">{{post.poster.first_name}} {{post.poster.last_name}}</a> Said: {{post.content}}
-            {% if user.id == post.poster.id %}
-                <a href="/posts/{{post.id}}/edit">Edit</a>
-                <a href="/posts/{{post.id}}/delete">Delete</a>
-            {% endif %}
-        </p>
+    <p><a href="/users/{{post.poster.id}}">{{post.poster.first_name}} {{post.poster.last_name}}</a> Said:
+        {{post.content}}
+        {% if user.id == post.poster.id %}
+        <a href="/posts/{{post.id}}/edit">Edit</a>
+        <a href="/posts/{{post.id}}/delete">Delete</a>
+        {% endif %}
+    </p>
     {% endfor %}
     <h3>Post on the Wall!</h3>
-    <form action="/users/{{user.id}}/post" method = "POST">
+    <form action="/users/{{user.id}}/post" method="POST">
         <textarea name="content" placeholder="Write your post here!"></textarea>
         <button type="submit">Submit Post!</button>
     </form>
@@ -28,4 +31,5 @@
     <a href="/dashboard">Go to User Information Dashboard!</a>
     <a href="/logout">Logout</a>
 </body>
+
 </html>
